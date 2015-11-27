@@ -16,12 +16,12 @@ function [output_width_map, output_height_map] = proposal_calc_output_size(conf,
         caffe.set_mode_cpu();
     end
     
-    input = 100:conf.max_size;
-    output_w = nan(size(input));
+    input = 100:conf.max_size; %for all window sizes s>100 map s*s to w*h
+    output_w = nan(size(input)); %create a vector of same size as input .. nan for easy debugging
     output_h = nan(size(input));
     for i = 1:length(input)
         s = input(i);
-        im_blob = single(zeros(s, s, 3, 1));
+        im_blob = single(zeros(s, s, 3, 1));  %zero matrix as input to rpn ????
         net_inputs = {im_blob};
 
         % Reshape net's input blobs

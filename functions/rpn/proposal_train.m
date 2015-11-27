@@ -21,9 +21,9 @@ function save_model_path = proposal_train(conf, imdb_train, roidb_train, varargi
                                             10000,              @isscalar);
                                                                        
     % Max pixel size of a scaled input image
-    ip.addParamValue('solver_def_file',     fullfile(pwd, 'proposal_models', 'Zeiler_conv5', 'solver.prototxt'), ...
+    ip.addParamValue('solver_def_file',     fullfile(fileparts(pwd), 'proposal_models', 'Zeiler_conv5', 'solver.prototxt'), ...
                                                         @isstr);
-    ip.addParamValue('net_file',            fullfile(pwd, 'proposal_models', 'Zeiler_conv5', 'Zeiler_conv5.caffemodel'), ...
+    ip.addParamValue('net_file',            fullfile(fileparts(pwd), 'proposal_models', 'Zeiler_conv5', 'Zeiler_conv5.caffemodel'), ...
                                                         @isstr);
     ip.addParamValue('cache_name',          'Zeiler_conv5', ...
                                                         @isstr);
@@ -33,7 +33,7 @@ function save_model_path = proposal_train(conf, imdb_train, roidb_train, varargi
     
 %% try to find trained model
     imdbs_name = cell2mat(cellfun(@(x) x.name, imdb_train, 'UniformOutput', false));
-    cache_dir = fullfile(pwd, 'output', 'rpn_cachedir', opts.cache_name, imdbs_name);
+    cache_dir = fullfile(fileparts(pwd), 'output', 'rpn_cachedir', opts.cache_name, imdbs_name);
     save_model_path = fullfile(cache_dir, 'final');
     if exist(save_model_path, 'file')
         return;
@@ -42,7 +42,7 @@ function save_model_path = proposal_train(conf, imdb_train, roidb_train, varargi
 %% init  
     % init caffe solver
     imdbs_name = cell2mat(cellfun(@(x) x.name, imdb_train, 'UniformOutput', false));
-    cache_dir = fullfile(pwd, 'output', 'rpn_cachedir', opts.cache_name, imdbs_name);
+    cache_dir = fullfile(fileparts(pwd), 'output', 'rpn_cachedir', opts.cache_name, imdbs_name);
     mkdir_if_missing(cache_dir);
     caffe_log_file_base = fullfile(cache_dir, 'caffe_log');
     caffe.init_log(caffe_log_file_base);

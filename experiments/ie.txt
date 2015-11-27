@@ -1,0 +1,7 @@
+output/fast_rcnn_cachedir/faster_rcnn_VOC2012_vgg_16layers_top-1_nms0_7_top2000_stage2_fast_rcnn/voc_2012_test/log/test_20151127_105535.txt:Error in imdb_eval_voc (line 77)
+output/fast_rcnn_cachedir/faster_rcnn_VOC2012_vgg_16layers_top-1_nms0_7_top2000_stage2_fast_rcnn/voc_2012_test/log/test_20151112_214522.txt:{Operation terminated by user during imdb_eval_voc (line 64)
+output/fast_rcnn_cachedir/faster_rcnn_VOC2012_vgg_16layers_top-1_nms0_7_top2000_stage2_fast_rcnn/voc_2012_test/log/test_20151127_101139.txt:Error in imdb_eval_voc (line 77)
+output/fast_rcnn_cachedir/faster_rcnn_VOC2012_vgg_16layers_top-1_nms0_7_top2000_stage2_fast_rcnn/voc_2012_test/log/test_20151127_105027.txt:Error in imdb_eval_voc (line 77)
+output/fast_rcnn_cachedir/faster_rcnn_VOC2012_vgg_16layers_top-1_nms0_7_top2000_stage2_fast_rcnn/voc_2012_test/log/test_20151127_103126.txt:Error in imdb_eval_voc (line 77)
+output/fast_rcnn_cachedir/faster_rcnn_VOC2012_vgg_16layers_top-1_nms0_7_top2000_stage2_fast_rcnn/voc_2012_test/log/test_20151127_095912.txt:Error in imdb_eval_voc (line 85)
+output/fast_rcnn_cachedir/faster_rcnn_VOC2012_vgg_16layers_top-1_nms0_7_top2000_stage2_fast_rcnn/voc_2012_test/log/test_20151127_103648.txt:Error in imdb_eval_voc (line 77)

@@ -27,6 +27,7 @@ ip.addParamValue('extension',                       '',     @ischar);
 ip.parse(imdb, varargin{:});
 opts = ip.Results;
 
+opts.rootDir=fileparts(pwd);
 roidb.name = imdb.name;
 if ~isempty(opts.extension)
     opts.extension = ['_', opts.extension];

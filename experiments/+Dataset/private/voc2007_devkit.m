@@ -1,3 +1,3 @@
 function path = voc2007_devkit()
-    path = './datasets/VOCdevkit2007';
+    path =fullfile(fileparts(pwd),'datasets','VOCdevkit2007');
 end

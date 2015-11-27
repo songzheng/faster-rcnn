@@ -17,8 +17,8 @@ opts.use_gpu                = true;
 opts.test_scales            = 600;
 
 %% -------------------- INIT_MODEL --------------------
-model_dir                   = fullfile(pwd, 'output', 'faster_rcnn_final', 'faster_rcnn_VOC0712_vgg_16layers'); %% VGG-16
-%model_dir                   = fullfile(pwd, 'output', 'faster_rcnn_final', 'faster_rcnn_VOC0712_ZF'); %% ZF
+%model_dir                   = fullfile(fileparts(pwd), 'output', 'faster_rcnn_final', 'faster_rcnn_VOC0712_vgg_16layers'); %% VGG-16
+model_dir                   = fullfile(fileparts(pwd), 'output', 'faster_rcnn_final', 'faster_rcnn_VOC0712_ZF'); %% ZF
 proposal_detection_model    = load_proposal_detection_model(model_dir);
 
 proposal_detection_model.conf_proposal.test_scales = opts.test_scales;
@@ -28,7 +28,7 @@ if opts.use_gpu
     proposal_detection_model.conf_detection.image_means = gpuArray(proposal_detection_model.conf_detection.image_means);
 end
 
-% caffe.init_log(fullfile(pwd, 'caffe_log'));
+% caffe.init_log(fullfile(fileparts(pwd), 'caffe_log'));
 % proposal net
 rpn_net = caffe.Net(proposal_detection_model.proposal_net_def, 'test');
 rpn_net.copy_from(proposal_detection_model.proposal_net);
@@ -70,7 +70,7 @@ im_names = {'001763.jpg', '004545.jpg', '000542.jpg', '000456.jpg', '001150.jpg'
 running_time = [];
 for j = 1:length(im_names)
     
-    im = imread(fullfile(pwd, im_names{j}));
+    im = imread(fullfile(fileparts(pwd), im_names{j}));
     
     if opts.use_gpu
         im = gpuArray(im);

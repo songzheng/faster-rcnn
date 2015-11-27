@@ -31,18 +31,20 @@ if nargin < 4
     flip = false;
 end
 
-cache_file = ['./imdb/cache/imdb_voc_' year '_' image_set];
+cache_file = [fullfile(fileparts(pwd),'imdb','cache','imdb_voc_') year '_' image_set];
 if flip
     cache_file = [cache_file, '_flip'];
 end
 try
   load(cache_file);
+   display('loading testdb from cache');
 catch
   VOCopts = get_voc_opts(root_dir);
   VOCopts.testset = image_set;
 
   imdb.name = ['voc_' year '_' image_set];
   imdb.image_dir = fileparts(VOCopts.imgpath);
+sprintf(VOCopts.imgsetpath, image_set)
   imdb.image_ids = textread(sprintf(VOCopts.imgsetpath, image_set), '%s');
   imdb.extension = 'jpg';
   imdb.flip = flip;

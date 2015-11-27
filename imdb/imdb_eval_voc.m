@@ -70,12 +70,12 @@ prec = [];
 ap = 0;
 ap_auc = 0;
 
-do_eval = (str2num(year) <= 2007) | ~strcmp(test_set, 'test');
+do_eval = (str2num(year) >= 2007) | ~strcmp(test_set, 'test');
 if do_eval
   % Bug in VOCevaldet requires that tic has been called first
   tic;
-  [recall, prec, ap] = VOCevaldet(VOCopts, res_id, cls, draw_curve);
-  ap_auc = xVOCap(recall, prec);
+[recall, prec, ap] = VOCevaldet(VOCopts, res_id, cls, draw_curve);
+ap_auc = xVOCap(recall, prec);
 
   % force plot limits
   ylim([0 1]);
@@ -84,6 +84,7 @@ if do_eval
   print(gcf, '-djpeg', '-r0', ...
         fullfile(conf.cache_dir, [cls '_pr_' imdb.name suffix '.jpg']));
 end
+
 fprintf('!!! %s : %.4f %.4f\n', cls, ap, ap_auc);
 
 save(fullfile(conf.cache_dir,  [cls '_pr_' imdb.name suffix]), ...

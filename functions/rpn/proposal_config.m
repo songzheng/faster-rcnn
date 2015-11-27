@@ -61,7 +61,7 @@ function conf = proposal_config(varargin)
     
     ip.parse(varargin{:});
     conf = ip.Results;
-    
+
     assert(conf.ims_per_batch == 1, 'currently rpn only supports ims_per_batch == 1');
     
     % if image_means is a file, load it
