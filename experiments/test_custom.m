@@ -1,4 +1,4 @@
-function test_ilsvrc()
+function test_custom()
 % script_faster_rcnn_ILSVRC()
 % Faster rcnn training and testing with VGG16 model
 % --------------------------------------------------------
@@ -28,9 +28,9 @@ cache_base_fast_rcnn        = '';
 % train/test data
 dataset                     = [];
 use_flipped                 = true;
-snippet			   = 'ILSVRC2015_train_00184006';
+snippet			   = 'rh_images';
 dataset                     = Dataset.voc2012_trainval(dataset, 'train', use_flipped);
-dataset                     = Dataset.ilsvrc_test(dataset, 'test',snippet,false);
+dataset                     = Dataset.custom_test(dataset, 'test',snippet,false);
 
 %% -------------------- TRAIN --------------------
 % conf
@@ -55,8 +55,12 @@ model.stage2_fast_rcnn.output_model_file = fullfile(base_dir,'output','fast_rcnn
 size(dataset.roidb_test.rois)
 display('proposal_test_complete');
 
-Faster_RCNN_Train.do_fast_rcnn_test_ilsvrc(conf_fast_rcnn, model.stage2_fast_rcnn, dataset.imdb_test, dataset.roidb_test,false);
+outdir=fullfile(base_dir,'experiments','output','fast_rcnn_cachedir','faster_rcnn_VOC2012_vgg_16layers_top-1_nms0_7_top2000_stage2_fast_rcnn',strcat('ilsvrc_',snippet));
 
+
+
+Faster_RCNN_Train.do_fast_rcnn_test_ilsvrc(conf_fast_rcnn, model.stage2_fast_rcnn, dataset.imdb_test, dataset.roidb_test,false);
+make_vid(snippet,outdir);
 % save final models, for outside tester
 %Faster_RCNN_Train.gather_rpn_fast_rcnn_models(conf_proposal, conf_fast_rcnn, model, dataset);
 end
