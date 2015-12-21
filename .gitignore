@@ -16,6 +16,7 @@ external/caffe/matlab
 output/
 cachedir/
 imdb/cache
+batch_data/
 *.caffemodel
 *.mat
 

@@ -4,7 +4,7 @@ y=[];
 for i=1:l
     ly=size(y,1);
     
-    if x(i,5)<0.5 break;
+    if x(i,5)<0.8 break;
     end
     ins = 1;
     for j=1:ly

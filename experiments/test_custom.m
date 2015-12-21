@@ -1,4 +1,4 @@
-function test_custom()
+function test_custom(snippet, detect_result_dir)
 % script_faster_rcnn_ILSVRC()
 % Faster rcnn training and testing with VGG16 model
 % --------------------------------------------------------
@@ -28,7 +28,7 @@ cache_base_fast_rcnn        = '';
 % train/test data
 dataset                     = [];
 use_flipped                 = true;
-snippet			   = 'rh_images';
+%snippet			   = 'rh_images';
 dataset                     = Dataset.voc2012_trainval(dataset, 'train', use_flipped);
 dataset                     = Dataset.custom_test(dataset, 'test',snippet,false);
 
@@ -56,13 +56,15 @@ size(dataset.roidb_test.rois)
 display('proposal_test_complete');
 
 outdir=fullfile(base_dir,'experiments','output','fast_rcnn_cachedir','faster_rcnn_VOC2012_vgg_16layers_top-1_nms0_7_top2000_stage2_fast_rcnn',strcat('ilsvrc_',snippet));
-
+%% outdir = detect_result_dir
 
 
 Faster_RCNN_Train.do_fast_rcnn_test_ilsvrc(conf_fast_rcnn, model.stage2_fast_rcnn, dataset.imdb_test, dataset.roidb_test,false);
 make_vid(snippet,outdir);
 % save final models, for outside tester
 %Faster_RCNN_Train.gather_rpn_fast_rcnn_models(conf_proposal, conf_fast_rcnn, model, dataset);
+quit;
+
 end
 
 function [anchors, output_width_map, output_height_map] = proposal_prepare_anchors(conf, cache_name, test_net_def_file)
@@ -71,3 +73,4 @@ function [anchors, output_width_map, output_height_map] = proposal_prepare_ancho
     anchors                = proposal_generate_anchors(cache_name, ...
                                     'scales',  2.^[3:5]);
 end
+
