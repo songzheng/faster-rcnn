@@ -19,6 +19,9 @@ imdb/cache
 batch_data/
 *.caffemodel
 *.mat
+*.avi
+*.swp
+*.swo
 
 # Windows Installer files
 *.cab
